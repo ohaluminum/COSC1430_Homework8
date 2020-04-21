@@ -7,18 +7,19 @@ Location::Location(){
     y = 0;
 }
 
-
 Location::Location(string name_, float x_, float y_){
     name = name_;
     x = x_;
     y = y_;
 }
 
-Location Location::operator + (Location const &other) { 
+//Good Example here:
+Location Location::operator+(const Location &other) {
     return Location(name + other.name, x + other.x, y + other.y); 
 } 
 
-bool Location::operator == (Location const &other){
+//Good Example here:
+bool Location::operator == (const Location &other){
     return (name == other.name && x == other.x && y == other.y);    
 }
 

@@ -3,12 +3,15 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-# pragma once
+
+#pragma once
 
 class Location{
+private:
     string name;
     float x, y;
-    public:
+  
+public:
     string getName();
     float getX();
     float getY();
@@ -17,7 +20,7 @@ class Location{
     void setY(float y_);
     Location();
     Location(string name_, float x_, float y_);
-    Location operator + (Location const &other);
-    bool operator == (Location const &other);
+    Location operator+(const Location &other);
+    bool operator==(const Location &other);
 };
 
