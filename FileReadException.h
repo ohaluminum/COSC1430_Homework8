@@ -1,2 +1,16 @@
+#include "Location.h"
+#include <iostream>
 
-//FIX ME: declare the FileReadException exception class
+using namespace std;
+
+class FileReadException
+{
+private:
+	string err_message;
+
+public:
+	FileReadException();
+	FileReadException(string message);
+	string getMessage();
+};
+
