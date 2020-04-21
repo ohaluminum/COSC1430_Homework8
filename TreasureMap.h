@@ -48,7 +48,7 @@ public:
 
 	/*
 	 *Function addStep(): a void function that takes in a T element, add it to steps and increment total_steps. 
-	 *If total_steps is equal to max_steps, show this messageand don't add.
+	 *If total_steps is equal to max_steps, show this message and don't add.
 	 */
 	void addStep(T add)
 	{
@@ -76,6 +76,8 @@ public:
 			}
 
 			steps[total_steps - 1] = nullptr;
+
+			total_steps--;
 		}
 	}
 
@@ -92,7 +94,7 @@ public:
 	 */
 	void nextStep()
 	{
-		if (current_step == total_steps)
+		if (current_step == total_steps - 1)
 		{
 			cout << "Cannot goto next step, treasure has already been found!" << endl;
 		}
@@ -101,7 +103,7 @@ public:
 			cout << "Going from " << steps[current_step] << " to " << steps[current_step + 1] << endl;
 			current_step++;
 
-			if (current_step == total_steps)
+			if (current_step == total_steps - 1)
 			{
 				cout << "Congratulations, you have found the treasure!" << endl;
 			}
@@ -124,7 +126,7 @@ public:
 		}
 		else
 		{
-			cout << "Backtracking from " << steps[current_step] << " to " << steps[current_step - 1] << endl;
+			cout << "Backtracking from " << steps[current_step] << " to " << steps[current_step] << endl;
 			current_step--;
 		}
 	}

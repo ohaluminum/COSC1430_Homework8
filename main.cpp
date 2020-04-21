@@ -72,7 +72,7 @@ TreasureMap<T> readMap(string file_name, int max_steps)
             string error = "Error reading map: ";
             error += file_name;
             error += " contains more than ";
-            error += max_steps;
+            error += to_string(max_steps);
             error += " steps!";
    
             throw FileReadException(error);
