@@ -98,7 +98,7 @@ public:
 		}
 		else
 		{
-			cout << "Going from " << steps[current_step] << " to " << step[current_step + 1] << endl;
+			cout << "Going from " << steps[current_step] << " to " << steps[current_step + 1] << endl;
 			current_step++;
 
 			if (current_step == total_steps)
@@ -124,7 +124,7 @@ public:
 		}
 		else
 		{
-			cout << "Backtracking from " << steps[current_step] " to " steps[current_step - 1] << endl;
+			cout << "Backtracking from " << steps[current_step] << " to " << steps[current_step - 1] << endl;
 			current_step--;
 		}
 	}

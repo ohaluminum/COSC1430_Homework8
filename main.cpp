@@ -8,13 +8,13 @@
 
 using namespace std;
 
-//overload operator << of Location class, no changes needed
+//Overload operator << of Location class, no changes needed
 ostream& operator<<(ostream& os, Location& pt) {
 	return os << pt.getName();
 }
 
-//overload operator >> of Location class, no changes needed
-istream& operator >> (istream& os, Location& pt) {
+//Overload operator >> of Location class, no changes needed
+istream& operator>>(istream& os, Location& pt) {
 	string name;
 	float x,y;
 	os >> name >> x >> y;
@@ -27,6 +27,62 @@ istream& operator >> (istream& os, Location& pt) {
 
 
 //FIX ME: Implement readmap function that reads from a file and return a proper TreasureMap object
+/*
+ *Function readMap():
+ *This is a template function that takes in two arguments, a string file_name and an int for max_steps. 
+ *It returns a TreasureMap of type T.
+ *
+ *This function first opens the file with the file_name and if it doesn't exists, throws a FileReadException exception with this message:
+ *Error reading map: <file_name> does not exists!
+
+ *The function will create a new TreasureMap of type T, then for each item in the input file, 
+ *use the extraction operator (>>) to read in a new element of type T and add it into the map with addStep() member function of the TreasureMap class.
+ *
+ *However, if there are more items in the input file than the provided max_steps (2nd argument of readMap), then throw a FileReadException with this message:
+ *Error reading map: <file_name> contains more than <max_steps> steps!
+ *
+ *After reading (without issues), the function returns that TreasureMap object.
+ */
+template<typename T>
+TreasureMap<T> readMap(string file_name, int max_steps)
+{
+    ifstream inFS;
+
+    inFS.open(file_name);
+    if (!inFS.is_open())
+    {
+        string error = "Error reading map: ";
+        error += file_name;
+        error += " does not exisits!";
+
+        throw FileReadException(error);
+    }
+
+    TreasureMap<T> newMap(max_steps);
+    T step;
+    int num_step = 0;
+
+    while (!inFS.eof())
+    {
+        inFS >> step;
+        num_step++;
+
+        if (num_step > max_steps)
+        {
+            string error = "Error reading map: ";
+            error += file_name;
+            error += " contains more than ";
+            error += max_steps;
+            error += " steps!";
+   
+            throw FileReadException(error);
+        }
+
+        newMap.addStep(step);
+    }
+
+    return newMap;
+}
 
 
 int main()
@@ -36,24 +92,49 @@ int main()
     cin >> file_name >> file_type >> max_steps;
     
     
-    try{
-        if (file_type == "string"){
+    try
+    {
+        if (file_type == "string")
+        {
             TreasureMap<string> Tmap = readMap<string>(file_name, max_steps);
-            for (int i = 0; i < Tmap.getTotalSteps()-1; i ++){
+
+            for (int i = 0; i < Tmap.getTotalSteps() - 1; i ++)
+            {
                 Tmap.nextStep();
             }
-        } else if (file_type == "int"){
-            //FIX ME: Create a TreasureMap of type int, call readMap to read the file_name and file_type
-            //Then use a for loop to call the map.nextStep()
-        } else if (file_type == "char"){
-            //FIX ME: Create a TreasureMap of type char, call readMap to read the file_name and file_type
-            //Then use a for loop to call the map.nextStep()
-        } else if (file_type == "location"){
-            //FIX ME: Create a TreasureMap of type Location, call readMap to read the file_name and file_type
-            //Then use a for loop to call the map.nextStep()
+        } 
+        else if (file_type == "int")
+        {
+            TreasureMap<int> Tmap = readMap<int>(file_name, max_steps);
+
+            for (int i = 0; i < Tmap.getTotalSteps() - 1; i++) 
+            {
+                Tmap.nextStep();
+            }
+        } 
+        else if (file_type == "char")
+        {
+            TreasureMap<char> Tmap = readMap<char>(file_name, max_steps);
+
+            for (int i = 0; i < Tmap.getTotalSteps() - 1; i++)
+            {
+                Tmap.nextStep();
+            }
+        } 
+        else if (file_type == "location")
+        {
+            TreasureMap<Location> Tmap = readMap<Location>(file_name, max_steps);
+
+            for (int i = 0; i < Tmap.getTotalSteps() - 1; i++)
+            {
+                Tmap.nextStep();
+            }
         }
-    }catch(/*FIX ME: define exception type here*/){
-        //FIX ME: prints out the exception message using getMessage() here
     }
+    catch (FileReadException e)
+    {
+        cout << e.getMessage() << endl;
+    }
+
     return 0;
 }
