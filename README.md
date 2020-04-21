@@ -2,6 +2,8 @@
 
 #### Exception Handling &amp; Template Functions &amp; Template Classes
 
+:exclamation::grey_exclamation:This Homework contains Professor's example of overloading `==`  and `+` operator!!!
+
 > For this homework, you will learn how to use templates by implementing a TreasureMap class. This class accepts a series of steps that will lead to the treasure. Since each step can be of any type such as a string, a number, or another class/struct, the usage of a template is needed. In addition, you will need to incorporate error handling methods such as throwing and catching an exception when reading treasure maps in the form of input text files.
 
 #### TreasureMap
