@@ -1,6 +1,6 @@
 # COSC1430_Homework8
 
-#### Exception Handling &amp; Template Functions &amp; Template Classes
+### Exception Handling &amp; Template Functions &amp; Template Classes
 
 :exclamation::grey_exclamation:This Homework contains Professor's example of overloading `==`  and `+` operator!!!
 
